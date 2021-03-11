@@ -4,7 +4,7 @@ class UnitTest {
 
     function __construct() {
 
-        $this->url = "http://localhost/grade_process.php";
+        $this->url = "http://localhost/api/src/grade_process.php";
        
         $this->ch = curl_init($this->url);
         curl_setopt($this->ch, CURLOPT_POST, 1);     
@@ -22,7 +22,7 @@ class UnitTest {
         $output = curl_exec($this->ch);
        
         if($output === false) {
-            echo 'Fail, connection error: ' . curl_error($this->ch). "\n";
+            echo "\nTEST RESULT: Fail - ". curl_error($this->ch). "\n";
             exit();
         }
         curl_close($this->ch);
@@ -30,10 +30,16 @@ class UnitTest {
        
         $result = json_decode($output, TRUE);
         if ($result === null && json_last_error() !== JSON_ERROR_NONE) {
-            echo "\nFormat error, fail\n";
+            echo "\nTEST RESULT: Fail - JSON format error\n";
             exit();
-        }    
+        } 
+        if (isset($result[0]["error"])) {
+            echo "\nTEST RESULT: Fail - {$result[0]["error"]} \n";
+            exit();
+        }   
+           
         foreach($result as $r) {
+            
             if($r['grade'] != $expected_result[$i]['grade']) {
                 echo "\nGrade error for {$r['name']}. Expected: {$expected_result[$i]['grade']}, found {$r['grade']}\n";
                 $status = "Fail";
@@ -63,7 +69,7 @@ $payload = '[
             { "name": "Jane", "grade": 68 },
             { "name": "Emma", "grade": 32 },
             { "name": "Sophia", "grade": 39 }
-        ]';
+        ]';                                             
 $expected_result =  '[
             { "name": "John", "grade": 55, "pass": true },
             { "name": "Jane", "grade": 70, "pass": true },
