@@ -20,17 +20,17 @@ class UnitTest {
         curl_setopt($this->ch, CURLOPT_POSTFIELDS, $payload );
           
         $output = curl_exec($this->ch);
-        curl_close($this->ch);
+       
         if($output === false) {
-            echo 'Connection error: ' . curl_error($this->ch);
+            echo 'Fail, connection error: ' . curl_error($this->ch). "\n";
             exit();
         }
-        
+        curl_close($this->ch);
         echo "Output: \n$output\n\n";
        
         $result = json_decode($output, TRUE);
         if ($result === null && json_last_error() !== JSON_ERROR_NONE) {
-            echo "\nJson error, fail\n";
+            echo "\nFormat error, fail\n";
             exit();
         }    
         foreach($result as $r) {

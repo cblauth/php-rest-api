@@ -19,9 +19,9 @@ class Api {
         }             
         foreach($this->request as $elem) {
              
-            // validations to ensure the structure is valid 
             $this->counter ++;
             
+            // validations to ensure the structure is valid                       
             if ((!isset($elem->name)) OR (!isset($elem->grade))) {
                 exit("error: missing name or grade, element $this->counter");
             }             
@@ -50,7 +50,7 @@ class Api {
 $data = file_get_contents("php://input");
 // only accepting POST requests
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    exit("error: invalid requetst");
+    exit("error: invalid request");
 }  
 $api = new Api($data);
 $api->grade_process();

@@ -11,11 +11,8 @@ class Validation {
         }
     }
     
-    static function validateGrade(string $grade) {
+    static function validateGrade(string $grade) {      
         // grade must be an integer between 0 and 100
-        if($grade == "0") {
-            return true;
-        }
         if (filter_var($grade, FILTER_VALIDATE_INT, array("options" => array("min_range"=>0, "max_range"=>100))) === false) {      
             return false;
         } else {

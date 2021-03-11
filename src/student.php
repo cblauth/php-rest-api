@@ -5,17 +5,16 @@ class Student {
     public $grade;
     public $pass;
     private $treshold;
-    // required grade to pass
-    
-    
+        
     function __construct() {
+        // required grade to pass
         $this->treshold = 35;     
-    }
-    
+    }  
     public function setName(string $name) {
         $this->name = $name;
     }
     public function setGrade(int $grade) {
+        // round the grade
         $this->grade = Helper::roundGrade($grade);
     }  
     public function printStudent() {
