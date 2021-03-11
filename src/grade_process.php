@@ -1,21 +1,21 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);  
-
 require_once("validation.php");
 require_once("helper.php");
 require_once("student.php");
   
 class Api {
-     
-    public function grade_process($data) {
-        
+
+    public function __construct($data) {
         $this->result = [];
         $this->counter = 0;
         $this->request = json_decode($data);
+    
+    }
+     
+    public function grade_process() {
         
+         
         if ($this->request === null && json_last_error() !== JSON_ERROR_NONE) {
            exit("invalid json");
         }             
@@ -45,7 +45,7 @@ $data = file_get_contents("php://input");
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     exit("invalid requetst");
 }  
-$api = new Api;
-$api->grade_process($data);
+$api = new Api($data);
+$api->grade_process();
   
 ?>

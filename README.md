@@ -1,6 +1,6 @@
 # PHP REST API
 
-## Running application using docker
+## Running the application using docker
 
 * Clone the repositry
 * Create the Docker Image
@@ -9,9 +9,9 @@ docker build -t api .
 ```
 * Run the image using port 80
 ```
-docker run  -p 80:80 api
+docker run -p 80:80 api
 ```
- * Open your browser
+ * Open in your browser
 ```
 http://localhost/grade_process.php
 ```
