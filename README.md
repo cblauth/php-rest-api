@@ -1,6 +1,6 @@
 # PHP REST API
 
-## Running the application using docker
+## Running the application using Docker
 
 * Clone the repositry
 ```
@@ -10,7 +10,7 @@ git clone https://github.com/cblauth/php-rest-api.git
 ```
 cd php-rest-api
 ```
-* Create the Docker Image
+* Create the Docker image
 ```
 docker build -t api .
 ```
@@ -22,7 +22,7 @@ docker run -p 80:80 api
 ```
 http://localhost/grade_process.php
 ```
-** If you read "error: invalid requetst", the API is running
+* If you read "error: invalid requetst", the API is running
 
 
 ## How to use the API
@@ -31,7 +31,6 @@ http://localhost/grade_process.php
 [
   { "name": "John", "grade": 53 },
   { "name": "Jane", "grade": 68 }
-
 ]
 ```
 * grade must be an integer between 0 and 100
