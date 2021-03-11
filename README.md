@@ -14,11 +14,11 @@ docker build -t api .
 ```
 docker run -p 80:80 api
 ```
- * Open in your browser the endpoint
+ * Open private $treshold in your browser
 ```
 http://localhost/grade_process.php
 ```
-** If you read "invalid requetst" it means the API is runnig
+** If you read "error: invalid requetst" it means the API is runnig
 
 ## Testing
 

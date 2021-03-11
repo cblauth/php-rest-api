@@ -4,20 +4,19 @@ class Student {
     public $name;
     public $grade;
     public $pass;
+    private $treshold;
     // required grade to pass
-    private $treshold = 35;
     
-    function __construct($data) {
-        $this->name = $data->name;
-        $this->grade = Helper::roundGrade($data->grade);        
-        $this->passed();     
+    
+    function __construct() {
+        $this->treshold = 35;     
     }
     
-    public function getName() {
-        return $this->name;
+    public function setName(string $name) {
+        $this->name = $name;
     }
-    public function getGrade() {
-        return $this->grade;
+    public function setGrade(int $grade) {
+        $this->grade = Helper::roundGrade($grade);
     }  
     public function printStudent() {
          return $this;   

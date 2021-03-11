@@ -6,7 +6,7 @@ require_once("student.php");
   
 class Api {
 
-    function __construct($data) {
+    function __construct(string $data) {
         $this->result = [];
         $this->counter = 0;
         $this->request = json_decode($data);   
@@ -15,25 +15,29 @@ class Api {
     public function grade_process() {
             
         if ($this->request === null && json_last_error() !== JSON_ERROR_NONE) {
-           exit("invalid json");
+            exit("error: invalid json");
         }             
         foreach($this->request as $elem) {
              
             // validations to ensure the structure is valid 
             $this->counter ++;
+            
             if ((!isset($elem->name)) OR (!isset($elem->grade))) {
-                exit("missing name or grade, element $this->counter");
-            }
-             
+                exit("error: missing name or grade, element $this->counter");
+            }             
             if(!(Validation::validateName($elem->name))) {
-               exit("name invalid, element $this->counter");      
+                exit("error: name invalid, element $this->counter");      
             }   
             if(!(Validation::validateGrade($elem->grade))) {
-               exit("grade invalid, element $this->counter");      
+                exit("error: grade invalid, element $this->counter");      
             }     
             
             // send grades to student class to be processed            
-            $student = new Student($elem);            
+            $student = new Student; 
+            $student->setName($elem->name);
+            $student->setGrade($elem->grade);
+            $student->passed();         
+            
             $this->result[] = $student->printStudent();    
         }
         
@@ -46,7 +50,7 @@ class Api {
 $data = file_get_contents("php://input");
 // only accepting POST requests
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    exit("invalid requetst");
+    exit("error: invalid requetst");
 }  
 $api = new Api($data);
 $api->grade_process();

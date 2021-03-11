@@ -2,7 +2,7 @@
 
 class Validation {
 
-    static function validateName($name) {
+    static function validateName(string $name) {
         // name must be at least 2 chars long
         if(strlen($name) < 2) {
             return false; 
@@ -11,7 +11,7 @@ class Validation {
         }
     }
     
-    static function validateGrade($grade) {
+    static function validateGrade(string $grade) {
         // grade must be an integer between 0 and 100
         if($grade == "0") {
             return true;
