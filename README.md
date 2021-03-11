@@ -26,7 +26,7 @@ http://localhost/grade_process.php
 
 
 ## How to use the API
-* Send a JSON request to the endpoint http://localhost/grade_process.php, using method POST, with following structure: 
+* Send a JSON request to the endpoint http://localhost/grade_process.php, using method POST, with the following structure: 
 ```
 [
   { "name": "John", "grade": 53 },
@@ -34,10 +34,10 @@ http://localhost/grade_process.php
 
 ]
 ```
-* Grades must be integers between 0 and 100
-* Names must have at least 2 characters
-* Response JSON inform either if the student has passed or not
-* Example of response
+* grade must be an integer between 0 and 100
+* name must have at least 2 characters
+* response JSON informs if the student has passed or not
+* example of response:
 ```
 [
   { "name": "John", "grade": 55, "pass": true },
