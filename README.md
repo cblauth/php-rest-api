@@ -13,7 +13,7 @@ docker run  -p 80:80 api
 ```
  * Open your browser
 ```
-http://localhost/api/src/grade_process.php
+http://localhost/grade_process.php
 ```
 ** If you read "invalid requetst" it means the API is runnig
 

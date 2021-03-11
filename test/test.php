@@ -4,7 +4,7 @@ class UnitTest {
 
     public function __construct() {
 
-        $this->url = "http://localhost/api/src/grade_process.php";
+        $this->url = "http://localhost/grade_process.php";
         $this->ch = curl_init($this->url);
         curl_setopt($this->ch, CURLOPT_POST, 1);     
         curl_setopt($this->ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
