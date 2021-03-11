@@ -22,7 +22,7 @@ docker run -p 80:80 api
 ```
 http://localhost/grade_process.php
 ```
-* If you read "error: invalid requetst", the API is running
+* If you read [{"error" : "invalid request method"}], the API is running
 
 
 ## How to use the API
