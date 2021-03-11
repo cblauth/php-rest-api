@@ -2,7 +2,7 @@
 
 class UnitTest {
 
-    public function __construct() {
+    function __construct() {
 
         $this->url = "http://localhost/grade_process.php";
         $this->url = "http://localhost/api/src/grade_process.php";
@@ -13,25 +13,11 @@ class UnitTest {
         curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true );  
     }
 
-    public function grades_test() {
+    public function grades_test($payload, $expected_result) {
+        $expected_result = json_decode($expected_result, TRUE);
         $i = 0;
-        $status = "Success";
-        $payload = '[
-            { "name": "John", "grade": 53 },
-            { "name": "Jane", "grade": 68 },
-            { "name": "Emma", "grade": 32 },
-            { "name": "Sophia", "grade": 39 }
-        ]';
-        $expected_result = json_decode('[
-            { "name": "John", "grade": 55, "pass": true },
-            { "name": "Jane", "grade": 70, "pass": true },
-            { "name": "Emma", "grade": 30, "pass": false },
-            { "name": "Sophia", "grade": 40, "pass": true }
-        ]', TRUE);
-        
-        
-        curl_setopt($this->ch, CURLOPT_POSTFIELDS, $payload );
-          
+        $status = "Success";      
+        curl_setopt($this->ch, CURLOPT_POSTFIELDS, $payload );          
         $output = curl_exec($this->ch);
         curl_close($this->ch);
         if($output === false) {
@@ -57,21 +43,29 @@ class UnitTest {
                 echo "Pass error for {$r['name']}. Expected: {$expected_result[$i]['pass']}, found {$r['pass']}\n";
                 $status = "Fail";
             }   else {
-                echo "Pass correct for {$r['name']}. Expected: {$expected_result[$i]['pass']}, found {$r['pass']}\n";
-              
+                echo "Pass correct for {$r['name']}. Expected: {$expected_result[$i]['pass']}, found {$r['pass']}\n";         
             }
             $i++;  
         }
-        echo "\nTEST RESULT: $status\n";
-       
-        
-    
-                
+        echo "\nTEST RESULT: $status\n";                
     }
 }    
 
 $test = new UnitTest;
-$test->grades_test();
+$payload = '[
+            { "name": "John", "grade": 53 },
+            { "name": "Jane", "grade": 68 },
+            { "name": "Emma", "grade": 32 },
+            { "name": "Sophia", "grade": 39 }
+        ]';
+$expected_result =  '[
+            { "name": "John", "grade": 55, "pass": true },
+            { "name": "Jane", "grade": 70, "pass": true },
+            { "name": "Emma", "grade": 30, "pass": false },
+            { "name": "Sophia", "grade": 40, "pass": true }
+        ]';       
+
+$test->grades_test($payload, $expected_result);
 
 
 ?>

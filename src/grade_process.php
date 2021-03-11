@@ -6,42 +6,45 @@ require_once("student.php");
   
 class Api {
 
-    public function __construct($data) {
+    function __construct($data) {
         $this->result = [];
         $this->counter = 0;
-        $this->request = json_decode($data);
-    
+        $this->request = json_decode($data);   
     }
      
     public function grade_process() {
-        
-         
+            
         if ($this->request === null && json_last_error() !== JSON_ERROR_NONE) {
            exit("invalid json");
         }             
         foreach($this->request as $elem) {
              
+            // validations to ensure the structure is valid 
             $this->counter ++;
             if ((!isset($elem->name)) OR (!isset($elem->grade))) {
-                exit("missing name or grade element $this->counter");
+                exit("missing name or grade, element $this->counter");
             }
              
             if(!(Validation::validateName($elem->name))) {
-               exit("name invalid element $this->counter");      
+               exit("name invalid, element $this->counter");      
             }   
             if(!(Validation::validateGrade($elem->grade))) {
-               exit("grade invalid element $this->counter");      
+               exit("grade invalid, element $this->counter");      
             }     
-                          
+            
+            // send grades to student class to be processed            
             $student = new Student($elem);            
             $this->result[] = $student->printStudent();    
         }
+        
+        // output the result
         header('Content-Type: application/json'); 
         echo json_encode($this->result); 
     }
 }  
   
 $data = file_get_contents("php://input");
+// only accepting POST requests
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     exit("invalid requetst");
 }  

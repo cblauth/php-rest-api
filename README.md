@@ -11,7 +11,7 @@ docker build -t api .
 ```
 docker run -p 80:80 api
 ```
- * Open in your browser
+ * Open in your browser the endpoint
 ```
 http://localhost/grade_process.php
 ```

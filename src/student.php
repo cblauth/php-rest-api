@@ -4,8 +4,10 @@ class Student {
     public $name;
     public $grade;
     public $pass;
+    // required grade to pass
+    private $treshold = 35;
     
-    public function __construct($data) {
+    function __construct($data) {
         $this->name = $data->name;
         $this->grade = Helper::roundGrade($data->grade);        
         $this->passed();     
@@ -20,12 +22,12 @@ class Student {
     public function printStudent() {
          return $this;   
     }
-    public function passed() {
-         if($this->grade < 35 ) {
+    public function passed() {  
+        if($this->grade < $this->treshold ) {
             $this->pass = false;
-         } else {
+        } else {
             $this->pass = true;
-         }
+        }
     }
 } 
  
