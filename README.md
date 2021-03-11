@@ -6,6 +6,10 @@
 ```
 git clone https://github.com/cblauth/php-rest-api.git
 ```
+* Open project folder
+```
+cd php-rest-api
+```
 * Create the Docker Image
 ```
 docker build -t api .
