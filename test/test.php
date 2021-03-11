@@ -1,6 +1,5 @@
 <?php
 
-
 class UnitTest {
 
     public function __construct() {
