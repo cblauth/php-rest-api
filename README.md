@@ -2,7 +2,7 @@
 
 ## Running the application using Docker
 
-* Clone the repositry
+* Clone the project
 ```
 git clone https://github.com/cblauth/php-rest-api.git
 ```
