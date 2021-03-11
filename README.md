@@ -14,7 +14,7 @@ docker build -t api .
 ```
 docker run -p 80:80 api
 ```
- * Open private $treshold in your browser
+ * Open the endpoint in your browser
 ```
 http://localhost/grade_process.php
 ```
