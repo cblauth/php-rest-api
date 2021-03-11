@@ -18,7 +18,7 @@ docker run -p 80:80 api
 ```
 http://localhost/grade_process.php
 ```
-** If you read "error: invalid requetst" it means the API is runnig
+** If you read "error: invalid requetst", the API is running
 
 ## Testing
 
