@@ -3,6 +3,9 @@
 ## Running the application using docker
 
 * Clone the repositry
+```
+git clone https://github.com/cblauth/php-rest-api.git
+```
 * Create the Docker Image
 ```
 docker build -t api .
